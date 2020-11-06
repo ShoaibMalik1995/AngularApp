@@ -1,56 +1,74 @@
  [
   {
     "Id": 1,
+    "SellRent": 1,
     "Name": "Joe House",
     "Type": "House",
-    "Price": 5000000
+    "Price": 1000000,
+    "Image": "house_img1.png"
   },
   {
     "Id": 2,
+    "SellRent": 2,
     "Name": "Senate House",
     "Type": "House",
-    "Price": 5000000
+    "Price": 2000000,
+    "Image": "house_img2.png"
   },
   {
     "Id": 3,
+    "SellRent": 1,
     "Name": "Parliment House",
     "Type": "House",
-    "Price": 5000000
+    "Price": 300000,
+    "Image": "house_img3.png"
   },
   {
     "Id": 4,
+    "SellRent": 2,
     "Name": "Steven House",
     "Type": "House",
-    "Price": 5000000
+    "Price": 4000000,
+    "Image": "house_img4.png"
   },
   {
     "Id": 5,
+    "SellRent": 1,
     "Name": "Obama House",
     "Type": "House",
-    "Price": 5000000
+    "Price": 5000000,
+    "Image": "house_img5.png"
   },
   {
     "Id": 6,
+    "SellRent": 2,
     "Name": "Kevin House",
     "Type": "House",
-    "Price": 5000000
+    "Price": 600000,
+    "Image": "house_img6.png"
   },
   {
     "Id": 7,
+    "SellRent": 1,
     "Name": "Jhon House",
     "Type": "House",
-    "Price": 5000000
+    "Price": 700000,
+    "Image": "house_img7.png"
   },
   {
     "Id": 8,
+    "SellRent": 2,
     "Name": "Snow House",
     "Type": "House",
-    "Price": 5000000
+    "Price": 800000,
+    "Image": "house_img8.png"
   },
   {
     "Id": 9,
+    "SellRent": 1,
     "Name": "Marken House",
     "Type": "House",
-    "Price": 5000000
+    "Price": 900000,
+    "Image": "house_img9.png"
   }
 ]
