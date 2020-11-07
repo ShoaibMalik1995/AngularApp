@@ -6,13 +6,13 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
+      <li *ngIf="loggedIn()" class="nav-item">
         <a class="nav-link" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/">Buy <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
+      <li *ngIf="loggedIn()" class="nav-item">
         <a class="nav-link" routerLinkActive="active" routerLink="/rent-property">Rent</a>
       </li>
-      <li class="nav-item">
+      <li *ngIf="loggedIn()" class="nav-item">
         <a class="nav-link" routerLinkActive="active" routerLink="/add-property">List Property (Free)</a>
       </li>
       <!-- <li class="nav-item dropdown">
@@ -32,16 +32,41 @@
     </ul>
     <div>
       <ul class="nav nav-bar">
-        <li class="nav-item">
+        <li *ngIf="!loggedIn()" class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="/user/register">
             <i class="fa fa-user-plus"></i> Register
           </a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="!loggedIn()" class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="user/login">
             <i class="fa fa-sign-in"></i> Login
           </a>
         </li>
+        <!-- <li *ngIf="loggedIn()" class="nav-item">
+          <a class="nav-link" (click)="onLogout()">
+            <i class="fa fa-sign-out"></i> Logout
+          </a>
+        </li> -->
+        <div *ngIf="loggedIn()" class="dropdown mr-5" dropdown>
+          <a href="#" class="dropdown-toggle text-light" dropdownToggle (click)="false">
+            Welcome {{loggedInUser}}
+          </a>
+          <div class="dropdown-menu" *dropdownMenu>
+            <a href="#" class="dropdown-item">
+              <i class="fas fa-tachometer-alt"></i>  View Dashboard
+            </a>
+            <a href="#" class="dropdown-item">
+              <i class="fa fa-user-circle"></i>  My Profile
+            </a>
+            <a href="#" class="dropdown-item">
+              <i class="fa fa-key"></i>  Change Password
+            </a>
+            <li class="divider dropdown-divider"></li>
+            <a class="nav-link" (click)="onLogout()">
+              <i class="fa fa-sign-out"></i>  Logout
+            </a>
+          </div>
+        </div>
       </ul>
     </div>
   </div>
