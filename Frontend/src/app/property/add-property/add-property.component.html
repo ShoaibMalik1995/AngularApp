@@ -5,7 +5,7 @@
   <div class="card-body">
     <form (ngSubmit)="onSubmit(Form)" #Form="ngForm" >
       <div class="form-group col-12">
-        <label for="name">Name</label>
+        <label for="name" class="form-label">Name</label>
         <input #name="ngModel" type="text" class="form-control" minlength="3" maxlength="25" ngModel name="name" required>
         <span *ngIf="!name.valid && name.touched" class="error-block">
           <span *ngIf="name.errors.required">Name is required!</span>
@@ -15,7 +15,7 @@
       </div>
 
       <div class="form-group col-12">
-        <label for="type">Type</label>
+        <label for="type" class="form-label">Type</label>
         <input #type="ngModel" type="text" class="form-control" maxlength="25" ngModel name="type" required>
         <span *ngIf="!type.valid && type.touched" class="error-block">
           Type is required!
@@ -23,7 +23,7 @@
       </div>
 
       <div class="form-group col-12">
-        <label for="price">Price</label>
+        <label for="price" class="form-label">Price</label>
         <input #price="ngModel"  type="number" class="form-control"  min="0" ngModel name="price" required>
         <span *ngIf="!price.valid && price.touched" class="error-block">
           Price is required!
@@ -32,7 +32,7 @@
 
       <div class="form-group col-12">
         <button [disabled]="!Form.valid" type="submit" class="btn btn-primary mr-1">Save</button>
-        <button type="reset" class="btn btn-primary" (onclick)="onBack()">Cancel</button>
+        <button type="reset" class="btn btn-secondary" (onclick)="onBack()">Cancel</button>
       </div>
     </form>
   </div>

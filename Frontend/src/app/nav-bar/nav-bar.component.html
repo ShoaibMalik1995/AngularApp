@@ -10,7 +10,7 @@
         <a class="nav-link" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/">Buy <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active"routerLink="/rent-property">Rent</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/rent-property">Rent</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLinkActive="active" routerLink="/add-property">List Property (Free)</a>
@@ -30,9 +30,19 @@
         <a class="nav-link disabled" href="#">Disabled</a>
       </li> -->
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <div>
+      <ul class="nav nav-bar">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/user/register">
+            <i class="fa fa-user-plus"></i> Register
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="user/login">
+            <i class="fa fa-sign-in"></i> Login
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
