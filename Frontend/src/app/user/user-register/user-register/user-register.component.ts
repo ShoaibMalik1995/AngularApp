@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IUser } from 'src/app/model/IUser.interface';
+import { AlertService } from 'src/app/services/Alert.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class UserRegisterComponent implements OnInit {
   User: IUser;
   IsFormSubmitted: Boolean;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private alertyfy: AlertService) { }
 
   ngOnInit() {
     this.userRegisterationForm = new FormGroup({
@@ -75,12 +76,18 @@ export class UserRegisterComponent implements OnInit {
 
     if(this.userRegisterationForm.valid){
       //Object.assign() method is used to assign one Object value to another Object
-    //this.User = Object.assign(this.User, this.userRegisterationForm.value);
-    //Save User Data into local storage
-    //this.userService.addUser(this.User);
-    this.userService.addUser(this.getUserData());
-    //Reset The Form Controls After Submit
-    this.userRegisterationForm.reset();
+      //this.User = Object.assign(this.User, this.userRegisterationForm.value);
+      //Save User Data into local storage
+      //this.userService.addUser(this.User);
+      this.userService.addUser(this.getUserData());
+      //Reset The Form Controls After Submit
+      this.userRegisterationForm.reset();
+
+      this.alertyfy.Success("Register Successfully!");
+      this.IsFormSubmitted = false;
+    }
+    else {
+      this.alertyfy.Error("Kindly provide the required fields!");
     }
 
   }
