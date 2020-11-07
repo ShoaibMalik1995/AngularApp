@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { IUser } from 'src/app/model/IUser.interface';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-register',
@@ -9,8 +11,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class UserRegisterComponent implements OnInit {
 
   userRegisterationForm: FormGroup;
+  User: IUser;
+  IsFormSubmitted: Boolean;
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.userRegisterationForm = new FormGroup({
@@ -53,8 +57,31 @@ export class UserRegisterComponent implements OnInit {
     return this.userRegisterationForm.get('mobileNo') as FormControl;
   }
 
-  onSubmit() {
-    console.log(this.userRegisterationForm);
+  getUserData(): IUser {
+    return this.User = {
+      UserId: 0,
+      UserName: this.username.value,
+      Email: this.email.value,
+      Password: this.password.value,
+      MobileNo: this.mobileNo.value
+    }
+
   }
 
+  onSubmit() {
+
+    this.IsFormSubmitted = true;
+    console.log(this.userRegisterationForm.value);
+
+    if(this.userRegisterationForm.valid){
+      //Object.assign() method is used to assign one Object value to another Object
+    //this.User = Object.assign(this.User, this.userRegisterationForm.value);
+    //Save User Data into local storage
+    //this.userService.addUser(this.User);
+    this.userService.addUser(this.getUserData());
+    //Reset The Form Controls After Submit
+    this.userRegisterationForm.reset();
+    }
+
+  }
 }
