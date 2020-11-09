@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { IUser } from 'src/app/model/IUser.interface';
 import { AlertService } from 'src/app/services/Alert.service';
 import { UserService } from 'src/app/services/user.service';
@@ -15,7 +16,7 @@ export class UserRegisterComponent implements OnInit {
   User: IUser;
   IsFormSubmitted: Boolean;
 
-  constructor(private userService: UserService, private alertyfy: AlertService) { }
+  constructor(private userService: UserService, private alertyfy: AlertService, private router: Router) { }
 
   ngOnInit() {
     this.userRegisterationForm = new FormGroup({
@@ -85,6 +86,8 @@ export class UserRegisterComponent implements OnInit {
 
       this.alertyfy.Success("Register Successfully!");
       this.IsFormSubmitted = false;
+
+      this.router.navigate(['/user/login']);
     }
     else {
       this.alertyfy.Error("Kindly provide the required fields!");

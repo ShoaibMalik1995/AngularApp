@@ -13,5 +13,6 @@ import { IProperty } from '../../model/IProperty.interface';
 export class PropertyCardComponent {
 
   @Input() Property: IProperty
+  @Input() hideIcons: Boolean
 
 }

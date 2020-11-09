@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
 import { IProperty } from 'src/app/model/IProperty.interface';
 
+
 @Component({
   selector: 'app-add-property',
   templateUrl: './add-property.component.html',
@@ -22,7 +23,13 @@ export class AddPropertyComponent implements OnInit {
     Name: null,
     Price: null,
     SellRent: null,
-    Type: null
+    PType: null,
+    FType: null,
+    BHK: null,
+    BuiltArea: null,
+    City: null,
+    Description: null,
+    RTM: null
   };
 
   constructor(private router: Router) { }
