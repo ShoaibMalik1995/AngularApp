@@ -4,10 +4,10 @@
     <img *ngIf="Property.Image" class="card-img-top" src="assets/images/{{Property.Image}}" >
     <ul *ngIf="!hideIcons" class="list-inline text-center member-icons">
       <li class="list-inline-item">
-        <button class="btn btn-primary" routerLink="/Property-detail/{{Property.Id}}"><i class="far fa-edit"></i></button>
+        <a class="btn btn-primary" routerLink="/property-detail/{{Property.Id}}"><i class="far fa-edit"></i></a>
       </li>
       <li class="list-inline-item">
-        <button class="btn btn-primary"><i class="far fa-address-book"></i></button>
+        <a class="btn btn-primary"><i class="far fa-address-book"></i></a>
       </li>
     </ul>
   </div>

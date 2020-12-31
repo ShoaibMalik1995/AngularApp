@@ -9,7 +9,7 @@
         <form [formGroup]="userRegisterationForm" (ngSubmit)="onSubmit()">
           <div class="form-group col-12">
             <label for="userName" class="form-label">Name</label>
-            <input type="text" class="form-control" formControlName="userName" maxlength="25">
+            <input type="text" class="form-control" formControlName="userName" maxlength="25" [ngClass]="{'is-invalid': username.invalid && (username.touched || IsFormSubmitted)}">
             <span *ngIf="!username.valid && (username.touched || IsFormSubmitted)" class="error-block">
               <span *ngIf="username.errors.required">User name is required!</span>
               <span *ngIf="username.errors.minlength">User name is atleast 3 char long!</span>
@@ -19,7 +19,7 @@
 
           <div class="form-group col-12">
             <label for="email" class="form-label">Email</label>
-            <input type="text" class="form-control" formControlName="email" maxlength="25">
+            <input type="text" class="form-control" formControlName="email" maxlength="25" [ngClass]="{'is-invalid': email.invalid && (email.touched || IsFormSubmitted)}">
             <span *ngIf="!email.valid && (email.touched || IsFormSubmitted)" class="error-block">
               <span *ngIf="email.errors.required">Email is required!</span>
               <span *ngIf="email.errors.email">Provide a valid email!</span>
@@ -29,7 +29,7 @@
 
           <div class="col-12">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" formControlName="password" maxlength="25">
+            <input type="password" class="form-control" formControlName="password" maxlength="25" [ngClass]="{'is-invalid': password.invalid && (password.touched || IsFormSubmitted)}">
             <span *ngIf="!password.valid && (password.touched || IsFormSubmitted)" class="error-block">
               <span *ngIf="password.errors.required">Password is required!</span>
               <span *ngIf="password.errors.minlength">Password is atleast 6 char long!!</span>
@@ -38,7 +38,7 @@
 
           <div class="form-group col-12">
             <label for="confirmpassword" class="form-label">Confirm Password</label>
-            <input type="password" class="form-control" formControlName="confirmpassword">
+            <input type="password" class="form-control" formControlName="confirmpassword" [ngClass]="{'is-invalid': (confirmpassword.invalid && (confirmpassword.touched || IsFormSubmitted)) || (userRegisterationForm.hasError('notmatched') && confirmpassword.valid)}">
             <span *ngIf="!confirmpassword.valid && (confirmpassword.touched || IsFormSubmitted)" class="error-block">
               <span *ngIf="confirmpassword.errors.required">Please Confirm the password!</span>
             </span>
@@ -49,7 +49,7 @@
 
           <div class="form-group col-12">
             <label for="mobileNo" class="form-label">Mobile No</label>
-            <input type="text" class="form-control" formControlName="mobileNo" maxlength="15">
+            <input type="text" class="form-control" formControlName="mobileNo" maxlength="15" [ngClass]="{'is-invalid': password.invalid && (password.touched || IsFormSubmitted)}">
             <span *ngIf="!mobileNo.valid && (mobileNo.touched || IsFormSubmitted)" class="error-block">
               <span *ngIf="mobileNo.errors.required">Mobile number is required!</span>
               <span *ngIf="mobileNo.errors.maxlength">Provide a valid mobile no!</span>

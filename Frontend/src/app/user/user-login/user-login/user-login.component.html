@@ -9,7 +9,7 @@
         <form [formGroup]="userloginForm" (ngSubmit)="onSubmit()">
           <div class="form-group col-12">
             <label for="userName" class="form-label">Name</label>
-            <input type="text" class="form-control" formControlName="username" maxlength="25">
+            <input type="text" class="form-control" formControlName="username" maxlength="25" [ngClass]="{'is-invalid': username.invalid && username.touched}">
             <span *ngIf="!username.valid && username.touched" class="error-block">
               <span *ngIf="username.errors.required">User name is required!</span>
             </span>
@@ -17,7 +17,7 @@
 
           <div class="col-12">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" formControlName="password">
+            <input type="password" class="form-control" formControlName="password" [ngClass]="{'is-invalid': password.invalid && password.touched}">
             <span *ngIf="!password.valid && password.touched" class="error-block">
               <span *ngIf="password.errors.required">Password is required!</span>
             </span>
