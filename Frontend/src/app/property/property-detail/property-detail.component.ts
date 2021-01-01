@@ -48,7 +48,7 @@ export class PropertyDetailComponent implements OnInit {
     this.galleryOptions = [
       {
         width: '100%',
-        height: '570px',
+        height: '470px',
         thumbnailsColumns: 4,
         imageAnimation: NgxGalleryAnimation.Slide
       },

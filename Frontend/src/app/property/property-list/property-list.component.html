@@ -1,6 +1,26 @@
+<nav class="navbar navbar-light bg-light">
+  <form class="form-inline">
+    <label class="label label-pill label-light"><strong> Filter City :&nbsp;</strong></label>
+    <input [(ngModel)]="City" name="City" (change)="onClearText()" class="form-control mr-sm-2" type="search" placeholder="Search By City" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="button" (click)="onFilterCity()">Search</button>
+    &nbsp;
+    <label class="label label-pill label-light"><strong> Sort By :&nbsp;</strong></label>
+    <select class="select-menu mr-sm-2" [(ngModel)]="sortByParams" name="sortByParams">
+      <option class="select-item" value="">Select Option</option>
+      <option class="select-item" value="City">City</option>
+      <option class="select-item" value="Price">Price</option>
+    </select>
+    <button class="btn btn-outline-info my-2 my-sm-0" type="button" (click)="onsortDirection()">
+      <i *ngIf="sortDirection === 'asc'" class="fa fa-sort-alpha-down"></i>
+      <i *ngIf="sortDirection === 'desc'" class="fa fa-sort-alpha-up"></i>
+    </button>
+  </form>
+</nav>
+
 <div class="container">
   <div class="row">
-    <div *ngFor="let Property of Properties" class="shadow-lg col-sm-4 p-2">
+    <div *ngFor="let Property of Properties | filter: SearchCity : 'City' | sort: [sortByParams,sortDirection]"
+      class="shadow-lg col-sm-4 p-2">
       <app-property-card [Property]="Property"></app-property-card>
     </div>
   </div>
