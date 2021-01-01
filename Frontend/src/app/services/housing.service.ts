@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators'
 import { Observable } from 'rxjs';
 import { Property } from '../model/Property';
-import { IPropertyBase } from '../model/IPropertyBase.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,27 +11,47 @@ export class HousingService {
 
   constructor(private http:HttpClient) { }
 
-  getAllProperties(SellRent: number) : Observable<IPropertyBase[]> {
+  getAllProperties(SellRent?: number) : Observable<Property[]> {
     return this.http.get('data/properties.json').pipe(
       map(data => {
-        const propertiesArray: Array<IPropertyBase> = [];
+        const propertiesArray: Array<Property> = [];
         const props= JSON.parse(localStorage.getItem('props'));
 
         if(props){
           props.forEach(element => {
-            if(element.SellRent === SellRent){
+            if(SellRent)
+            {
+              if(element.SellRent === SellRent){
+                propertiesArray.push(element);
+              }
+            }
+            else {
               propertiesArray.push(element);
             }
           });
         }
 
         for(const id in data){
-          if(data.hasOwnProperty(id) && data[id].SellRent === SellRent){
+          if(SellRent){
+            if(data.hasOwnProperty(id) && data[id].SellRent === SellRent){
+              propertiesArray.push(data[id]);
+            }
+          }
+          else {
             propertiesArray.push(data[id]);
           }
         }
 
         return propertiesArray;
+      })
+    );
+  }
+
+  getPropertyById(propId: number) {
+    return this.getAllProperties().pipe(
+      map(propertiseList => {
+        //throw new Error("Test Error"); //This line Added to Check the Route Resolver added for property detail
+        return propertiseList.find(p => p.Id === propId);
       })
     );
   }
