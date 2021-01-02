@@ -43,6 +43,12 @@ export class AddPropertyComponent implements OnInit {
     private housingService: HousingService) { }
 
   ngOnInit() {
+
+    //Check User is loggedin
+    if(!localStorage.getItem('token')) {
+      this.router.navigate(['/user/login']);
+    }
+    //Create Add Property Form
     this.CreateaddPropertyForm();
   }
 

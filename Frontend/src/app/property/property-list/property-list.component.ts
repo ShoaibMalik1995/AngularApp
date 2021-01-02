@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IPropertyBase } from 'src/app/model/IPropertyBase.interface';
 import { HousingService } from 'src/app/services/housing.service';
 @Component({
@@ -17,11 +17,15 @@ export class PropertyListComponent implements OnInit {
   sortDirection = 'asc';
   sortByParams = '';
 
-  constructor(private route: ActivatedRoute, private housingService:HousingService) {
+  constructor(private router: Router,private route: ActivatedRoute, private housingService:HousingService) {
 
   }
 
   ngOnInit(): void {
+    //Check User is loggedin
+    if(!localStorage.getItem('token')) {
+      this.router.navigate(['/user/login']);
+    }
 
     if(this.route.snapshot.url.toString()){
       this.SellRent = 2; // Means we are on ren-property url Else on the base url.

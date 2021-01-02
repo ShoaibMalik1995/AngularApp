@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IPropertyBase } from 'src/app/model/IPropertyBase.interface';
-import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-property-card',
@@ -11,9 +11,18 @@ import { RouterModule } from '@angular/router';
   //styles: [`h1 {font-weight: normal; color: green; }`]
 })
 
-export class PropertyCardComponent {
+export class PropertyCardComponent implements OnInit {
 
   @Input() Property: IPropertyBase
   @Input() hideIcons: Boolean
+
+  constructor(private router: Router){}
+
+  ngOnInit(): void {
+    //Check User is loggedin
+    if(!localStorage.getItem('token')) {
+      this.router.navigate(['/user/login']);
+    }
+  }
 
 }

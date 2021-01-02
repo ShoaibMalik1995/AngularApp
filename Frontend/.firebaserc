@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "apnaghr-pak"
+  },
+  "targets": {
+    "apnaghr-pak": {
+      "hosting": {
+        "AngularApp": [
+          "apnaghr-pak"
+        ]
+      }
+    }
+  }
+}

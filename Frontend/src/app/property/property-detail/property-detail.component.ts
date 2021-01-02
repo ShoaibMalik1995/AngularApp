@@ -22,6 +22,12 @@ export class PropertyDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private housingService: HousingService) { }
 
   ngOnInit() {
+
+    //Check User is loggedin
+    if(!localStorage.getItem('token')) {
+      this.router.navigate(['/user/login']);
+    }
+
     //this.propertyId = Number(this.route.snapshot.params['id']);
     this.propertyId = +this.route.snapshot.params['id']; // Both lines working same cast to a number
 
