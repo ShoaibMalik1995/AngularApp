@@ -8,7 +8,7 @@ import { AlertService } from '../services/Alert.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-
+  isCollapsed = true;
   loggedInUser: string;
   constructor(private router: Router, private alertift: AlertService) { }
 
