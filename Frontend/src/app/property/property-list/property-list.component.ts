@@ -27,6 +27,10 @@ export class PropertyListComponent implements OnInit {
       this.router.navigate(['/user/login']);
     }
 
+    this.housingService.getAllCities().subscribe( (data) =>{
+      console.log(data);
+    })
+
     if(this.route.snapshot.url.toString()){
       this.SellRent = 2; // Means we are on ren-property url Else on the base url.
     }

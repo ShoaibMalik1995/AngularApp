@@ -21,6 +21,7 @@ export class AddPropertyComponent implements OnInit {
   propertyType: Array<string> = ['House', 'Apartment', 'Duplex'];
   furnishType: Array<string> = ['Fully', 'Semi', 'Unfurnished'];
   entrance: Array<string> = ['East', 'West', 'North', 'South'];
+  citylist: any[];
 
   NextClicked: boolean;
   property = new Property();
@@ -33,7 +34,7 @@ export class AddPropertyComponent implements OnInit {
     FType: null,
     BHK: null,
     BuiltArea: null,
-    City: null,
+    City: '',
     Description: null,
     RTM: null
   };
@@ -49,6 +50,10 @@ export class AddPropertyComponent implements OnInit {
     }
     //Create Add Property Form
     this.CreateaddPropertyForm();
+
+    this.housingService.getAllCities().subscribe((data) => {
+      this.citylist = data;
+    });
   }
 
   CreateaddPropertyForm(){
