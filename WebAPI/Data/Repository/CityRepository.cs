@@ -3,8 +3,9 @@ using WebAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using WebAPI.Interface;
 
-namespace WebAPI.Repository
+namespace WebAPI.Data.Repository
 {
     public class CityRepository : ICityRepository
     {
@@ -25,11 +26,13 @@ namespace WebAPI.Repository
             var city = this._dbContext.Cities.Find(id);
             this._dbContext.Cities.Remove(city);
         }
+        
+        public void UpdateCity(City city){
+            this._dbContext.Cities.Update(city);
+        }
+
         public async Task<IEnumerable<City>> GetCities(){
             return await this._dbContext.Cities.ToListAsync();
-        }
-        public async Task<bool> SaveAsync(){
-            return await this._dbContext.SaveChangesAsync() > 0;
         }
     }
 }

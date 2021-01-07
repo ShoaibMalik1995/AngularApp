@@ -1,8 +1,10 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Models;
-using WebAPI.Data;
-using WebAPI.Repository;
+using WebAPI.Interface;
+using AutoMapper;
+using System.Collections.Generic;
+using WebAPI.DTOS;
 
 namespace WebAPI.Controllers
 {
@@ -11,13 +13,15 @@ namespace WebAPI.Controllers
     public class CityController : ControllerBase
     {
         #region Properties
-        private readonly ICityRepository _cityService;
+        private readonly IUnitOfWork uowService;
+        private readonly IMapper mapper;
         #endregion
 
         #region Constr
-        public CityController(ICityRepository cityRepository)
+        public CityController(IUnitOfWork unitfOfWork, IMapper mapper)
         {
-            this._cityService = cityRepository;
+            this.uowService = unitfOfWork;
+            this.mapper = mapper;
         }
         #endregion
 
@@ -25,8 +29,9 @@ namespace WebAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCities()
         {
-            var _citiesList = await this._cityService.GetCities();
-            return Ok(_citiesList);
+            var _citiesList = await this.uowService.CityRepository.GetCities();
+            var cityList = this.mapper.Map<IEnumerable<CityDTO>>(_citiesList);
+            return Ok(cityList);
         }
 
         [HttpPost("add")]
@@ -34,24 +39,25 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> AddCity(string cityname)
         {
             City city = new City { Name = cityname };
-            this._cityService.AddCity(city);
-            await this._cityService.SaveAsync();
+            this.uowService.CityRepository.AddCity(city);
+            await this.uowService.SaveAsync();
             return Ok(city);
         }
 
         [HttpPost("post")]
-        public async Task<IActionResult> AddCity(City city)
+        public async Task<IActionResult> AddCity(CityDTO city)
         {
-            this._cityService.AddCity(city);
-            await this._cityService.SaveAsync();
-            return Ok(city);
+            var model = this.mapper.Map<City>(city);
+            this.uowService.CityRepository.AddCity(model);
+            await this.uowService.SaveAsync();
+            return Ok(this.mapper.Map<CityDTO>(model));
         }
 
         [HttpGet("delete/{id}")]
         public async Task<IActionResult> DeleteCity(int id)
         {
-            this._cityService.DeleteCity(id);
-            await this._cityService.SaveAsync();
+            this.uowService.CityRepository.DeleteCity(id);
+            await this.uowService.SaveAsync();
             return Ok(id);
         }
 
