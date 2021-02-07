@@ -1,3 +1,6 @@
 Frontend/src/assets/images
 obj
 bin
+.vs
+.vscode
+.suo

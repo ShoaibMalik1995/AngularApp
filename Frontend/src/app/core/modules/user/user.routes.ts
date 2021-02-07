@@ -4,7 +4,8 @@ import { UserLoginComponent } from './pages/user-login/user-login.component';
 import { UserRegisterComponent } from './pages/user-register/user-register.component';
 
 const routes: Routes = [
-  {path: '', component: UserLoginComponent, children: [
+  {path: '', children: [
+    {path: '', component: UserLoginComponent},
     {path: 'user-login', component: UserLoginComponent},
     {path: 'user-register', component: UserRegisterComponent},
   ]},

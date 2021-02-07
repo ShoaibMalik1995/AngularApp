@@ -87,7 +87,7 @@ export class UserRegisterComponent implements OnInit {
       this.alertyfy.success("Register Successfully!");
       this.IsFormSubmitted = false;
 
-      this.router.navigate(['/user/login']);
+      this.router.navigate(['/user/user-login']);
     }
     else {
       this.alertyfy.error("Kindly provide the required fields!");

@@ -5,7 +5,8 @@ import { PropertyDetailResolverService } from './pages/property-detail/property-
 import { PropertyListComponent } from './pages/property-list/property-list.component';
 
 const routes: Routes = [
-  {path: '', component: PropertyListComponent, children: [
+  {path: '', children: [
+    {path: '', component: PropertyListComponent },
     { path: 'add-property', component: AddPropertyComponent },
     { path: 'rent-property', component: PropertyListComponent },
     { path: 'property-detail/:id', component: PropertyListComponent,
