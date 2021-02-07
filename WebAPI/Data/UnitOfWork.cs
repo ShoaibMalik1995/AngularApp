@@ -14,6 +14,9 @@ namespace WebAPI.Data
         }
 
         public ICityRepository CityRepository => new CityRepository(_dbContext);
+
+        public IUserRepository UserRepository => new UserRepository(_dbContext);
+
         public async Task<bool> SaveAsync()
         {
             return await this._dbContext.SaveChangesAsync() > 0;

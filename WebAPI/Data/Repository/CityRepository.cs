@@ -34,5 +34,10 @@ namespace WebAPI.Data.Repository
         public async Task<IEnumerable<City>> GetCities(){
             return await this._dbContext.Cities.ToListAsync();
         }
+
+        public async Task<City> FindCity(int id)
+        {
+            return await this._dbContext.Cities.FindAsync(id);
+        }
     }
 }

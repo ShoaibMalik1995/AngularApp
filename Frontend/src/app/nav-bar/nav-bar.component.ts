@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertService } from '../services/Alert.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,7 +10,7 @@ import { AlertService } from '../services/Alert.service';
 export class NavBarComponent implements OnInit {
   isCollapsed = true;
   loggedInUser: string;
-  constructor(private router: Router, private alertift: AlertService) { }
+  constructor(private router: Router, private alertift: ToastrService) { }
 
   ngOnInit() {
   }
@@ -22,7 +22,7 @@ export class NavBarComponent implements OnInit {
 
   onLogout() {
     localStorage.removeItem('token');
-    this.alertift.Success("You are logged out!")
+    this.alertift.success("You are logged out!")
     this.router.navigate(['/user/login']);
   }
 }
